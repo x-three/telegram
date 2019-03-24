@@ -1,0 +1,438 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fff;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+a {
+    color: #108be3;
+    text-decoration: none;
+    outline: none;
+}
+
+
+/**********************************************************************************************************************/
+.l-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 30px 0 40px;
+    min-height: 100%;
+    box-sizing: border-box;
+    /* outline: 1px solid rgba(97, 120, 133, 0.08); */
+    overflow: hidden;
+}
+
+.l-wrapper.m-center {
+    max-width: 640px;
+}
+
+.l-wrapper > header {
+    margin: 0 25px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.l-wrapper > header.m-center {
+    text-align: center;
+}
+
+.l-wrapper > footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+/* Navigation *********************************************************************************************************/
+.b-navigation {
+    flex-grow: 1;
+    margin: 40px 0;
+    padding: 0;
+    list-style: none outside none;
+    text-align: center;
+}
+
+.b-navigation > li {
+    margin-bottom: 25px;
+}
+
+.b-navigation a:hover {
+    text-decoration: underline;
+}
+
+
+/* Night Mode *********************************************************************************************************/
+.b-toggle-night-mode {
+    display: inline-block;
+    font-size: 26px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.b-toggle-night-mode [state] {
+    display: none;
+}
+
+body.m-night-mode {
+    background: #242f3e;
+    color: #fff;
+}
+
+body.m-night-mode a {
+    color: #36a8f1;
+}
+
+body.m-night-mode .b-main-chart:before {
+    background: linear-gradient(180deg, #242f3e, transparent);
+}
+
+body.m-night-mode .b-tooltip {
+    background: #253241;
+}
+
+body.m-night-mode .b-chart-preview .d-handle .e-edge::before {
+    background: rgba(30, 40, 54, 0.7);
+}
+
+body.m-night-mode .b-chart-preview .d-handle .e-edge,
+body.m-night-mode .b-chart-preview .d-handle::before,
+body.m-night-mode .b-chart-preview .d-handle::after {
+    background: rgba(128, 177, 211, 0.3);
+}
+
+body.m-night-mode .b-check-button .e-label {
+    color: #e8ecee;
+}
+
+
+/* Chart List *********************************************************************************************************/
+.b-chart-list {
+    margin: 0 -20px -20px;
+    padding: 0;
+    list-style: none outside none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.b-chart-list > li {
+    width: 640px;
+    margin: 0 20px 40px;
+}
+
+
+/* Chart Widget *******************************************************************************************************/
+.b-chart-widget {
+    display: block;
+    padding: 0 17px;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    flex-grow: 1;
+}
+
+.b-chart-widget .d-legend {
+    margin: 22px -10px 0 -11px;
+    padding: 0;
+    list-style: none outside none;
+}
+
+.b-chart-widget .d-legend::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.b-chart-widget .d-legend > li {
+    float: left;
+    margin: 0 10px 0 11px;
+}
+
+
+/* Main Chart *********************************************************************************************************/
+.b-main-chart {
+    position: relative;
+    z-index: 0;
+    height: 465px;
+    margin: 0 -17px;
+}
+
+.b-main-chart:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(180deg, #fff, transparent);
+}
+
+.b-main-chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Tooltip ************************************************************************************************************/
+.b-tooltip {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    margin: 0 12px;
+    padding: 10px 15px 8px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    line-height: normal;
+    cursor: default;
+}
+
+.b-chart-widget.m-mobile .b-tooltip {
+    pointer-events: none;
+}
+
+.b-tooltip header {
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 13px;
+    white-space: nowrap;
+}
+
+.b-tooltip ul {
+    margin: 0 -13px;
+    padding: 0;
+    list-style: none outside none;
+    display: flex;
+}
+
+.b-tooltip ul > li {
+    display: block;
+    margin: 0 13px;
+}
+
+.b-tooltip .e-value {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+}
+
+.b-tooltip .e-name {
+    display: block;
+    margin-top: 2px;
+    font-size: 15px;
+}
+
+
+/* Chart Preview ******************************************************************************************************/
+.b-chart-preview {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    height: 67px;
+    cursor: pointer;
+}
+
+.b-chart-preview .d-handle {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    min-width: 6px;
+    cursor: grab;
+}
+
+.b-chart-preview .d-handle::before,
+.b-chart-preview .d-handle::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    height: 1.5px;
+    background: rgba(85, 150, 195, 0.2);
+}
+
+.b-chart-preview .d-handle::before {
+    top: 0;
+}
+
+.b-chart-preview .d-handle::after {
+    bottom: 0;
+}
+
+/* Chart Preview - Edge ***********************************************************************************************/
+.b-chart-preview .d-handle .e-edge {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    max-width: 50%;
+    background: rgba(85, 150, 195, 0.2);
+    cursor: ew-resize;
+}
+
+.b-chart-preview .d-handle .e-edge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 10000px;
+    background: rgba(242, 247, 250, 0.8);
+    pointer-events: none;
+}
+
+.b-chart-preview .d-handle .e-edge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    right: -75%;
+    bottom: 0;
+}
+
+/* For more convenience with touch events */
+.b-chart-widget.m-mobile .b-chart-preview .d-handle .e-edge::after {
+    left: -250%;
+    right: -250%;
+}
+
+.b-chart-preview .d-handle .e-edge.m-left {
+    left: 0;
+}
+
+.b-chart-preview .d-handle .e-edge.m-left::before {
+    right: 100%;
+}
+
+.b-chart-preview .d-handle .e-edge.m-right {
+    right: 0;
+}
+
+.b-chart-preview .d-handle .e-edge.m-right::before {
+    left: 100%;
+}
+
+/* Mini Chart *********************************************************************************************************/
+.b-mini-chart {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    right: 1px;
+    height: 100%;
+}
+
+.b-mini-chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Check Button *******************************************************************************************************/
+.b-check-button {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid rgba(123, 162, 185, 0.2);
+    border-radius: 25px;
+    padding: 0 20px 0 55px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.b-check-button .e-label {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: #43484b;
+}
+
+.b-check-button::before,
+.b-check-button::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 24px;
+    left: 25px;
+    width: 1000px;
+    height: 2000px;
+    margin: -1000px 0 0 -1000px;
+    background: radial-gradient(circle closest-side at 1000px 1000px, rgba(145, 175, 180, 0.15) 100%, transparent 101%);
+    transition: width 300ms, opacity 150ms 150ms;
+}
+
+.b-check-button.m-checked::before,
+.b-check-button.m-unchecked::after {
+    width: calc(1000px + 110% - 25px);
+    opacity: 0;
+}
+
+/* Check Button - Icon ************************************************************************************************/
+.b-check-button .e-icon {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 2px solid;
+    transition: border-width 250ms;
+}
+
+.b-check-button .e-icon::before,
+.b-check-button .e-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 4px 0 0 -3.5px;
+    width: 3px;
+    height: 0;
+    transform-origin: 1.5px 1.5px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: height 250ms;
+}
+
+.b-check-button .e-icon::before {
+    transform: rotate(135deg);
+    /* height: 9px; */
+}
+
+.b-check-button .e-icon::after {
+    transform: rotate(-135deg);
+}
+
+/* Check Button - [Un]checked - Icon **********************************************************************************/
+.b-check-button.m-checked .e-icon {
+    border-width: 15px;
+}
+
+.b-check-button.m-unchecked .e-icon {
+    transition-delay: 50ms;
+}
+
+.b-check-button.m-checked .e-icon::before,
+.b-check-button.m-checked .e-icon::after {
+    transition-delay: 50ms;
+}
+
+.b-check-button.m-checked .e-icon::before {
+    height: 9px;
+}
+
+.b-check-button.m-checked .e-icon::after {
+    height: 15px;
+}
