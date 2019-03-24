@@ -119,6 +119,7 @@ body.m-night-mode .b-check-button .e-label {
     list-style: none outside none;
     display: flex;
     flex-wrap: wrap;
+    flex-grow: 1;
 }
 
 .b-chart-list > li {
